@@ -1208,8 +1208,9 @@ var Horaire = Timestamp.fromDate(ho);
 //-------------------Add function----------------//
 async function Add(url) {
    var ref = collection(db, "Equipe");
+   var ref2 = collection(db, "Entraineur");
 if (clubnom2.value == "" || nom2.value=="" || president2.value =="" ) {
-  alert("Club , Nom et Prisident sont obligatoire")
+  alert("Club , Nom et Président sont obligatoire")
 } else {
      const docRef = await addDoc(
        ref,{
@@ -1227,15 +1228,44 @@ if (clubnom2.value == "" || nom2.value=="" || president2.value =="" ) {
        }
    ).then(()=>{
        alert(`Équipe ${clubnom2.value} ajoutée avec succès !`);
-       clubnom2.value ="";
-       fond2.value="";
-       entraineur2.value="";
-       nom2.value="";
-       president2.value="";
-       ville2.value="";
+
    })
    .catch((error)=>{
        alert(`L'équipe ${clubnom2.value} n'a pas pu être ajoutée !`+error);
+   });
+   const docRef2 = await addDoc(
+       ref2,{
+           "Club" : clubnom2.value,
+           "DN": "",
+           "Fonction": "AC",
+           "Nom": "",
+           "ID": "",
+           "LN": "",
+           "Prenom": ville2.value,
+          
+       }
+   ).then(()=>{
+   })
+   .catch((error)=>{
+   });
+   const docRef3 = await addDoc(
+       ref2,{
+           "Club" : clubnom2.value,
+           "DN": "",
+           "Fonction": "HC",
+           "Nom": "",
+           "ID": "",
+           "LN": "",
+           "Prenom": ville2.value,
+          
+       }
+   ).then(()=>{
+    clubnom2.value ="";
+       fond2.value="";
+       nom2.value="";
+       president2.value="";
+   })
+   .catch((error)=>{
    });
 }
 
