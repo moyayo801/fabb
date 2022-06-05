@@ -381,7 +381,7 @@
     const analytics = getAnalytics(app);
 
     import{
-    Timestamp,getFirestore, doc, onSnapshot, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, query, where , getDocs,
+      orderBy, Timestamp,getFirestore, doc, onSnapshot, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, query, where , getDocs,
  }
  from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
  import{
@@ -463,7 +463,9 @@ select.forEach(
       return format;
     }
     const querySnapshot = await getDocs(collection(db, "Actualités"));
-    const querySnapshot2 = await getDocs(collection(db, "Actualités"));
+    const q =collection(db, "Actualités");
+    const q2 = query(q, orderBy("Horaire","desc"));
+    const querySnapshot2 = await getDocs(q2);
     var content = '';
 
     querySnapshot2.forEach(doc => {

@@ -1005,8 +1005,7 @@ async function update() {
   const ho = new Date(horaire.value) ;
 
   var Horaire = Timestamp.fromDate(ho);
-
-  
+   var date = dateFormat(ho, 'dd/MM/yyyy');
   const washingtonRef = doc(db, "Match", i);
 
 
@@ -1014,6 +1013,7 @@ await updateDoc(washingtonRef, {
            "Domicile" : domicile.value,
            "Visiteur": visiteur.value,
            "Salle": salle.value,
+           "Date":date,
            "Arbitre": arbitre.value,
            "Arbitre 2": arbitre2.value,
            "Arbitre 3": arbitre3.value,
